@@ -1,0 +1,23 @@
+{
+  "name": "woodhouse-plugin-archer",
+  "version": "0.0.0",
+  "description": "woodhouse-plugin-archer =======================",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Woodhouse-bot/woodhouse-plugin-archer.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Woodhouse-bot/woodhouse-plugin-archer/issues"
+  },
+  "homepage": "https://github.com/Woodhouse-bot/woodhouse-plugin-archer",
+  "dependencies": {
+    "request": "~2.44.0",
+    "cheerio": "~0.17.0"
+  }
+}
