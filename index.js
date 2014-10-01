@@ -1,38 +1,33 @@
 var request = require('request');
-var cheerio = require('cheerio');
 
-var archer = function() {
-    this.name = 'archer';
-    this.displayname = 'Archer';
-    this.description = 'Gives you a random archer quote';
+var chuck = function() {
+    this.name = 'chuck';
+    this.displayname = 'Chuck';
+    this.description = 'Gives you a random chuck quote';
 }
 
-archer.prototype.init = function(){
+chuck.prototype.init = function(){
     var self = this;
-    this.listen('archer me', 'standard', function(from, interface, params){
+    this.listen('roundhouse', 'standard', function(from, interface, params){
         self.getQuote(from, interface, params);
     })
 }
 
-archer.prototype.getQuote = function(from, interface, params){
+chuck.prototype.getQuote = function(from, interface, params){
     var self = this,
         options = {
-            uri: 'http://en.wikiquote.org/wiki/Archer_(TV_series)',
+            uri: 'http://api.icndb.com/jokes/random',
             headers: {
                 'user-agent': 'Woodhouse Bot - https://github.com/lukeb-uk/woodhouse'
             }
         };
 
-    request(options, function(err, response, html){
+    request(options, function(err, response, data){
         if (err) {throw err}
+        var object = JSON.parse(data);
 
-        var $ = cheerio.load(html);
-        var quotes = $("dl").toArray();
-        var quote = quotes[Math.floor(Math.random() * quotes.length)];
-        var message = $(quote).text().trim();
-
-        self.sendMessage(message, interface, from);
+        self.sendMessage(object.value.joke, interface, from);
     })
 }
 
-module.exports = archer;
+module.exports = chuck;
